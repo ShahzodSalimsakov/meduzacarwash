@@ -53,24 +53,23 @@ export default function WashTypeComponent() {
               <Tab.Panel
                 key={category.id}
                 className={classNames(
-                  "rounded-xl bg-white p-3",
+                  "rounded-xl bg-white",
                   " focus:outline-none "
                 )}
               >
-                {category.title}
-                <div className="grid grid-cols-2">
+                <div className="grid grid-cols-2 gap-10">
                   {category.vehicles &&
                     category.vehicles.map((vehicle) => (
-                      <div key={vehicle.id}>
-                        <div className="flex items-center">
+                      <div key={vehicle.id} className="border rounded-2xl p-4">
+                        <div className="w-max mx-auto">
                           <div className="flex-shrink-0">
                             <img
-                              className="h-10 w-10 rounded-full"
+                              className="h-20 w-20 rounded-full"
                               src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
                               alt=""
                             />
                           </div>
-                          <div className="ml-4">
+                          <div className="">
                             <div className="text-sm font-medium text-gray-900">
                               {vehicle.title}
                             </div>
