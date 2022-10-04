@@ -1,0 +1,10 @@
+{
+  "main": {
+    "specifyDateAndTime": "Укажите дату и время",
+    "specifyALocation": "Укажите локацию",
+    "determineLocation": "Определить мою локацию",
+    "specifyTypeOfSink": "Укажите тип мойки",
+    "standard": "Стандартная",
+    "other": "Другая"
+  }
+}

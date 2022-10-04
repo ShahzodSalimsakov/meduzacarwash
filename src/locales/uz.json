@@ -1,0 +1,10 @@
+{
+  "main": {
+    "specifyDateAndTime": "Sana va vaqtni belgilang",
+    "specifyALocation": "Joylashuvni belgilang",
+    "determineLocation": "Joylashuvni aniqlash",
+    "specifyTypeOfSink": "Yuvish turini belgilang",
+    "standard": "Standart",
+    "other": "Boshqa"
+  }
+}

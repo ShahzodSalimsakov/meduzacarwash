@@ -1,0 +1,22 @@
+---
+import { changeLanguage } from "i18next";
+import Button from "../components/Button.astro";
+import Layout from "../layouts/Layout.astro";
+import i18next, { t } from "i18next";
+import CalendarComponent from "../components/CalendarComponent";
+import Title from "../components/Title.astro";
+import MapComponent from "../components/MapComponent";
+import WashTypeComponent from "../components/WashTypeComponent";
+
+changeLanguage("ru");
+---
+
+<Layout title="Main">
+  <Title>{t("main.specifyDateAndTime")}</Title>
+  <CalendarComponent client:load />
+  <Title>{t("main.specifyALocation")}</Title>
+  <Button>{t("main.determineLocation")}</Button>
+  <MapComponent client:load />
+  <Title>{t("main.specifyTypeOfSink")}</Title>
+  <WashTypeComponent client:load />
+</Layout>
