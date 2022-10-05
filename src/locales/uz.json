@@ -5,6 +5,7 @@
     "determineLocation": "Joylashuvni aniqlash",
     "specifyTypeOfSink": "Yuvish turini belgilang",
     "standard": "Standart",
-    "other": "Boshqa"
+    "other": "Boshqa",
+    "additionalOptions": "Qo'shimcha parametrlar"
   }
 }

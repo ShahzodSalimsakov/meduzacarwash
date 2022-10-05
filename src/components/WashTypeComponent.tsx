@@ -26,6 +26,13 @@ export default function WashTypeComponent() {
     {
       id: 2,
       title: t("main.other"),
+      vehicles: [
+        {
+          id: 1,
+          title: "area",
+          price: "80000 kv.m",
+        },
+      ],
     },
   ]);
   return (
@@ -48,7 +55,7 @@ export default function WashTypeComponent() {
               </Tab>
             ))}
           </Tab.List>
-          <Tab.Panels className="mt-2">
+          <Tab.Panels className="mt-8">
             {categories.map((category) => (
               <Tab.Panel
                 key={category.id}
@@ -73,9 +80,7 @@ export default function WashTypeComponent() {
                             <div className="text-sm font-medium text-gray-900">
                               {vehicle.title}
                             </div>
-                            <div className="text-sm text-gray-500">
-                              {vehicle.price}
-                            </div>
+                            <div className="">{vehicle.price}</div>
                           </div>
                         </div>
                       </div>

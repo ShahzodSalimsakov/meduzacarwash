@@ -5,6 +5,7 @@
     "determineLocation": "Определить мою локацию",
     "specifyTypeOfSink": "Укажите тип мойки",
     "standard": "Стандартная",
-    "other": "Другая"
+    "other": "Другая",
+    "additionalOptions": "Дополнительные опции"
   }
 }
