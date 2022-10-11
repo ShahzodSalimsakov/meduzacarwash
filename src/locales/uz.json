@@ -6,6 +6,14 @@
     "specifyTypeOfSink": "Yuvish turini belgilang",
     "standard": "Standart",
     "other": "Boshqa",
-    "additionalOptions": "Qo'shimcha parametrlar"
+    "additionalOptions": "Qo'shimcha parametrlar",
+    "isThreeAccessToElectricity": "Elektrga ulanish imkoniyati mavjudmi?",
+    "paymentMethod": "To'lov usuli",
+    "inCash": "Naqd pul",
+    "online": "Onlayn",
+    "yes": "Ha",
+    "no": "Yo'q",
+    "total": "Jami",
+    "submitYourApplication": "Buyurtma berish"
   }
 }

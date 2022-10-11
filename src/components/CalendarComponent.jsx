@@ -10,12 +10,12 @@ import {
 export default function CalendarComponent() {
   const [value, onChange] = useState(new Date());
   return (
-    <div className="">
+    <div className="mx-6">
       <Calendar
         onChange={onChange}
         value={value}
         onClickDay={(value, event) => console.log(value)}
-        className=" shadow-md rounded-md"
+        className="shadow-md rounded-xl"
         tileClassName="rounded-xl"
         showNeighboringMonth={false}
         minDate={new Date()}

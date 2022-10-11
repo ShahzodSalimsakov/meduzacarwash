@@ -6,6 +6,14 @@
     "specifyTypeOfSink": "Укажите тип мойки",
     "standard": "Стандартная",
     "other": "Другая",
-    "additionalOptions": "Дополнительные опции"
+    "additionalOptions": "Дополнительные опции",
+    "isThreeAccessToElectricity": "Есть ли доступ к электричеству?",
+    "paymentMethod": "Способ оплаты",
+    "inCash": "Наличными",
+    "online": "Онлайн",
+    "yes": "Да",
+    "no": "Нет",
+    "total": "Итого",
+    "submitYourApplication": "Оставить заявку"
   }
 }
