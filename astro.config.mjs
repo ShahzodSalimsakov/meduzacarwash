@@ -7,16 +7,12 @@ import react from "@astrojs/react";
 import node from "@astrojs/node";
 
 // https://astro.build/config
-import vercel from "@astrojs/vercel/serverless";
-
-// https://astro.build/config
-import netlify from "@astrojs/netlify/functions";
-
-// https://astro.build/config
 export default defineConfig({
   integrations: [tailwind(), astroI18next(), react()],
   output: "server",
-  adapter: netlify(),
+  adapter: node({
+    mode: "middleware",
+  }),
   vite: {
     ssr: {
       noExternal: ["path-to-regexp", "react-calendar"],

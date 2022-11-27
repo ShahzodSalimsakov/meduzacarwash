@@ -1,69 +1,19 @@
-import { Fragment, useState } from "react";
-import i18next, { t } from "i18next";
+import { Fragment, useState, FC } from "react";
 import { Tab } from "@headlessui/react";
 import { Trans, HeadHrefLangs } from "astro-i18next/components";
+import { useTranslation } from "react-i18next";
+import { IProductCategory } from "../interfaces/products";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
-export default function WashTypeComponent() {
-  let [categories] = useState([
-    {
-      id: 1,
-      title: t("main.standard"),
-      vehicles: [
-        {
-          id: 1,
-          title: "Sedan",
-          price: "80000 sum",
-          image: "/images/icons/1.png",
-        },
-        {
-          id: 2,
-          title: "pickup",
-          price: "100000 sum",
-          image: "/images/icons/2.png",
-        },
-        {
-          id: 3,
-          title: "Sedan",
-          price: "80000 sum",
-          image: "/images/icons/3.png",
-        },
-        {
-          id: 4,
-          title: "pickup",
-          price: "100000 sum",
-          image: "/images/icons/4.png",
-        },
-      ],
-      additionalOptions: [
-        {
-          id: 1,
-          title: "Interior",
-          price: "10000 sum",
-          image: "/images/icons/5.png",
-        },
-        {
-          id: 2,
-          title: "Exterior",
-          price: "10000 sum",
-          image: "/images/icons/6.png",
-        },
-      ],
-    },
-    {
-      id: 2,
-      title: t("main.other"),
-      vehicles: [
-        {
-          id: 1,
-          title: "area",
-          price: "80000 kv.m",
-        },
-      ],
-    },
-  ]);
+
+interface WashTypeComponentProps {
+  categories: IProductCategory[];
+}
+
+const WashTypeComponent: FC<WashTypeComponentProps> = ({ categories }) => {
+  const { t } = useTranslation("translation");
   const [accessElectricity, setAccessElectricity] = useState(true);
   return (
     <div className="">
@@ -81,7 +31,7 @@ export default function WashTypeComponent() {
                   )
                 }
               >
-                {category.id}
+                {category.name}
               </Tab>
             ))}
           </Tab.List>
@@ -117,7 +67,7 @@ export default function WashTypeComponent() {
                     ))}
                   {categories[0].id === 1 && category.additionalOptions && (
                     <div className="font-semibold text-gray-500 col-span-2">
-                      {t("main.additionalOptions")}
+                      <span>{t("main.additionalOptions")}</span>
                     </div>
                   )}
                   {category.additionalOptions &&
@@ -178,4 +128,6 @@ export default function WashTypeComponent() {
       </div>
     </div>
   );
-}
+};
+
+export default WashTypeComponent;
