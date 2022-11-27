@@ -11,6 +11,6 @@ export default defineConfig({
   integrations: [tailwind(), astroI18next(), react()],
   output: "server",
   adapter: node({
-    mode: "standalone",
+    mode: "middleware",
   }),
 });
