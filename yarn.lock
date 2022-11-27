@@ -88,12 +88,12 @@
     "uvu" "^0.5.0"
     "vfile-message" "^3.0.0"
 
-"@astrojs/netlify@^1.1.0":
-  "integrity" "sha512-Gn8S4cYRAuLTWMTWtY6xC0r5a483BvT8WFr5Uq5kdqRUaYPGL3/ooWbCXJJYEA918pKkoZIFlyLRFbF1/OgTqQ=="
-  "resolved" "https://registry.npmjs.org/@astrojs/netlify/-/netlify-1.1.0.tgz"
-  "version" "1.1.0"
+"@astrojs/netlify@^1.2.1":
+  "integrity" "sha512-6ISps3454K4Jgf5fUfp2IjDQ19w5rgRJcy1BxV+Ke1BE7lraRdqg+Ywp0rytJz0jNbw5vz5gvajMZtTffHeA8w=="
+  "resolved" "https://registry.npmjs.org/@astrojs/netlify/-/netlify-1.2.1.tgz"
+  "version" "1.2.1"
   dependencies:
-    "@astrojs/webapi" "^1.1.0"
+    "@astrojs/webapi" "^1.1.1"
     "esbuild" "^0.14.43"
 
 "@astrojs/node@^3.1.0":
@@ -151,7 +151,7 @@
     "@vercel/nft" "^0.22.1"
     "fast-glob" "^3.2.11"
 
-"@astrojs/webapi@^1.1.0", "@astrojs/webapi@^1.1.1":
+"@astrojs/webapi@^1.1.1":
   "integrity" "sha512-yeUvP27PoiBK/WCxyQzC4HLYZo4Hg6dzRd/dTsL50WGlAQVCwWcqzVJrIZKvzNDNaW/fIXutZTmdj6nec0PIGg=="
   "resolved" "https://registry.npmjs.org/@astrojs/webapi/-/webapi-1.1.1.tgz"
   "version" "1.1.1"
