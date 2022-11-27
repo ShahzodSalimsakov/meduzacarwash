@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: "meduza_mainweb",
-      script: "./dist/server/entry.mjs",
+      script: "./server.js",
       watch: false,
       env: {
         PORT: 3000,
