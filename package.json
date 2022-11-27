@@ -22,6 +22,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@headlessui/react": "^1.7.3",
+    "@heroicons/react": "^2.0.13",
     "@pbe/react-yandex-maps": "^1.1.8",
     "astro": "^1.6.11",
     "astro-i18next": "^1.0.0-beta.13",

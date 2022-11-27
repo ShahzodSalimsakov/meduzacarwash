@@ -2,6 +2,7 @@ import { Fragment, useState, FC } from "react";
 import { Tab } from "@headlessui/react";
 import { Trans, HeadHrefLangs } from "astro-i18next/components";
 import { useTranslation } from "react-i18next";
+import { CheckCircleIcon } from "@heroicons/react/24/outline";
 import { IProductCategory } from "../interfaces/products";
 
 function classNames(...classes) {
@@ -15,6 +16,9 @@ interface WashTypeComponentProps {
 const WashTypeComponent: FC<WashTypeComponentProps> = ({ categories }) => {
   const { t } = useTranslation("translation");
   const [accessElectricity, setAccessElectricity] = useState(true);
+
+  const [selectedProduct, setSelectedProduct] = useState<number | null>(null);
+
   return (
     <div className="">
       {categories && (
@@ -36,7 +40,7 @@ const WashTypeComponent: FC<WashTypeComponentProps> = ({ categories }) => {
             ))}
           </Tab.List>
           <Tab.Panels className="mt-8">
-            {categories.map((category) => (
+            {categories.map((category: IProductCategory) => (
               <Tab.Panel
                 key={category.id}
                 className={classNames(
@@ -45,20 +49,32 @@ const WashTypeComponent: FC<WashTypeComponentProps> = ({ categories }) => {
                 )}
               >
                 <div className="grid grid-cols-2 gap-10">
-                  {category.vehicles &&
-                    category.vehicles.map((vehicle) => (
-                      <div key={vehicle.id} className="border rounded-2xl p-4">
-                        <div className="w-max mx-auto">
-                          <div className="flex-shrink-0">
+                  {category.products_product_categories &&
+                    category.products_product_categories.length > 0 &&
+                    category.products_product_categories.map((vehicle) => (
+                      <div
+                        key={vehicle.id}
+                        className={`border rounded-2xl p-4 hover:shadow-lg cursor-pointer relative ${
+                          selectedProduct == vehicle.id ? "shadow-lg" : ""
+                        }`}
+                        onClick={() => setSelectedProduct(vehicle.id)}
+                      >
+                        {selectedProduct == vehicle.id && (
+                          <div className="absolute left-2 top-2">
+                            <CheckCircleIcon className="h-6 w-6 text-blue-500" />
+                          </div>
+                        )}
+                        <div className="flex items-center justify-center">
+                          {/* <div className="flex-shrink-0">
                             <img
                               className="h-20 w-20 rounded-full"
                               src={vehicle.image}
                               alt=""
                             />
-                          </div>
+                          </div> */}
                           <div className="">
                             <div className="text-sm font-medium text-gray-900">
-                              {vehicle.title}
+                              {vehicle.name}
                             </div>
                             <div className="">{vehicle.price}</div>
                           </div>
