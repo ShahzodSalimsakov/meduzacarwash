@@ -21,6 +21,7 @@ const response = await fetch("https://api.meduza-carwash.uz/graphql", {
                   id
                   name
                   price
+                  icon
               }
           }
       }
@@ -40,8 +41,27 @@ changeLanguage("ru");
   <Title>{t("main.specifyDateAndTime")}</Title>
   <CalendarComponent client:load />
   <Title>{t("main.specifyALocation")}</Title>
-  <Button>{t("main.determineLocation")}</Button>
   <MapComponent client:load />
   <Title>{t("main.specifyTypeOfSink")}</Title>
   <WashTypeComponent categories={productCategories} client:load />
+  <div
+    style={{
+      display: "none",
+    }}
+  >
+    <span id="submitText">{t("main.orderSubmitLabel")}</span>
+  </div>
 </Layout>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    /** @ts-ignore */
+    window.Telegram.WebApp.MainButton.show();
+    /** @ts-ignore */
+    window.Telegram.WebApp.MainButton.setText(
+      document.getElementById("submitText").textContent.toUpperCase()
+    );
+    /** @ts-ignore */
+    window.Telegram.WebApp.MainButton.disable();
+  });
+</script>

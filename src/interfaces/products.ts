@@ -2,6 +2,7 @@ export class IProduct {
   id: string;
   name: string;
   price: number;
+  icon?: string;
 }
 
 export class IProductCategory {

@@ -14,6 +14,7 @@
     "yes": "Ha",
     "no": "Yo'q",
     "total": "Jami",
-    "submitYourApplication": "Buyurtma berish"
+    "submitYourApplication": "Buyurtma berish",
+    "orderSubmitLabel": "Buyurtmani berish"
   }
 }
