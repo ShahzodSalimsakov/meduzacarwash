@@ -1,4 +1,4 @@
-import { Fragment, useState, FC, useMemo } from "react";
+import { Fragment, useState, FC, useMemo, useEffect } from "react";
 import { useStore } from "@nanostores/react";
 import { Tab } from "@headlessui/react";
 import { Trans, HeadHrefLangs } from "astro-i18next/components";
@@ -7,6 +7,7 @@ import { CheckCircleIcon } from "@heroicons/react/24/outline/index";
 import {
   orderFormData as orderFormDataStore,
   setProperty as setOrderFormData,
+  filled,
 } from "../stores/orderForm";
 import { IProductCategory } from "../interfaces/products";
 
@@ -40,6 +41,20 @@ const WashTypeComponent: FC<WashTypeComponentProps> = ({ categories }) => {
     }
     return null;
   }, [orderFormData.productIds]);
+
+  useEffect(() => {
+    if (filled) {
+      /** @ts-ignore */
+      window.Telegram.WebApp.MainButton.enable();
+      /** @ts-ignore */
+      window.Telegram.WebApp.onEvent("mainButtonClicked", () => {
+        console.log("davr");
+      });
+    } else {
+      /** @ts-ignore */
+      window.Telegram.WebApp.MainButton.disable();
+    }
+  }, [filled]);
 
   return (
     <div className="">
