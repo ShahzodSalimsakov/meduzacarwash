@@ -3,7 +3,7 @@ import { useStore } from "@nanostores/react";
 import { Tab } from "@headlessui/react";
 import { Trans, HeadHrefLangs } from "astro-i18next/components";
 import { useTranslation } from "react-i18next";
-import { CheckCircleIcon } from "@heroicons/react/24/outline";
+import { CheckCircleIcon } from "@heroicons/react/24/outline/index";
 import {
   orderFormData as orderFormDataStore,
   setProperty as setOrderFormData,
