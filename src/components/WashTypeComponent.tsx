@@ -74,6 +74,7 @@ const WashTypeComponent: FC<WashTypeComponentProps> = ({ categories }) => {
             },
             fields: ["id"],
           });
+          console.log("products", orderFormData.productIds);
           client.request(query, variables).then((data) => {
             console.log(data);
             const id = data.createOrderTg.id;
@@ -88,7 +89,7 @@ const WashTypeComponent: FC<WashTypeComponentProps> = ({ categories }) => {
                 order_items: {
                   type: "[order_itemsInput!]",
                   value: orderFormData.productIds.map((v) => ({
-                    product_id: +v,
+                    product_id: v,
                     quantity: 1,
                   })),
                   required: true,
