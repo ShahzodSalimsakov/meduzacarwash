@@ -74,7 +74,6 @@ const WashTypeComponent: FC<WashTypeComponentProps> = ({ categories }) => {
             },
             fields: ["id"],
           });
-          console.log("products", orderFormData.productIds);
           client.request(query, variables).then((data) => {
             console.log(data);
             const id = data.createOrderTg.id;
@@ -99,11 +98,10 @@ const WashTypeComponent: FC<WashTypeComponentProps> = ({ categories }) => {
             });
 
             const response = client.request(query, variables);
-            console.log(response);
             /** @ts-ignore */
-            // window.Telegram.WebApp.MainButton.hideProgress();
-            // /** @ts-ignore */
-            // window.Telegram.WebApp.close();
+            window.Telegram.WebApp.MainButton.hideProgress();
+            /** @ts-ignore */
+            window.Telegram.WebApp.close();
           });
         }
       });
