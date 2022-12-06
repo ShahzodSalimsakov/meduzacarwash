@@ -60,7 +60,7 @@ export default function CalendarComponent() {
         next2Label={null}
         locale="ru-RU"
       />
-      <div className="flex flex-wrap justify-center">
+      <div className="flex flex-wrap justify-center gap-4">
         {times.map((time) => (
           <button
             key={time.value}
