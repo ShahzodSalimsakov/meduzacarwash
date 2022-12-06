@@ -31,9 +31,20 @@ export const filled = computed(orderFormData, (data) => {
     longitude,
     paymentMethod,
   } = data;
+  console.log(
+    "computed",
+    address &&
+      productIds &&
+      date &&
+      time &&
+      hasElectricity != undefined &&
+      latitude &&
+      longitude &&
+      paymentMethod
+  );
   return (
     address &&
-    productIds.length > 0 &&
+    productIds &&
     date &&
     time &&
     hasElectricity != undefined &&

@@ -35,6 +35,7 @@
     "gql-query-builder": "^3.8.0",
     "graphql": "^16.6.0",
     "graphql-request": "^5.0.0",
+    "hashids": "^2.2.10",
     "i18next-fs-backend": "^1.1.5",
     "nanostores": "^0.7.1",
     "path-to-regexp": "^6.2.1",

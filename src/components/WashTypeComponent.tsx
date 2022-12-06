@@ -4,12 +4,15 @@ import { Tab } from "@headlessui/react";
 import { Trans, HeadHrefLangs } from "astro-i18next/components";
 import { useTranslation } from "react-i18next";
 import { CheckCircleIcon } from "@heroicons/react/24/outline/index";
+import * as gql from "gql-query-builder";
+import dayjs from "dayjs";
 import {
   orderFormData as orderFormDataStore,
   setProperty as setOrderFormData,
   filled,
 } from "../stores/orderForm";
 import { IProductCategory } from "../interfaces/products";
+import { client } from "../graphqlConnect";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -26,6 +29,7 @@ const WashTypeComponent: FC<WashTypeComponentProps> = ({ categories }) => {
   const [selectedProduct, setSelectedProduct] = useState<number | null>(null);
 
   const orderFormData = useStore(orderFormDataStore);
+  const filledAllData = useStore(filled);
   const setProduct = (id: string) => {
     let products = [];
     if (orderFormData?.productIds) {
@@ -43,18 +47,69 @@ const WashTypeComponent: FC<WashTypeComponentProps> = ({ categories }) => {
   }, [orderFormData.productIds]);
 
   useEffect(() => {
-    if (filled) {
+    if (filledAllData) {
       /** @ts-ignore */
       window.Telegram.WebApp.MainButton.enable();
       /** @ts-ignore */
       window.Telegram.WebApp.onEvent("mainButtonClicked", () => {
-        console.log("davr");
+        if (filledAllData) {
+          /** @ts-ignore */
+          window.Telegram.WebApp.MainButton.showProgress();
+          const { query, variables } = gql.mutation({
+            operation: "createOrderTg",
+            variables: {
+              data: {
+                value: {
+                  tg: window.location.search.split("=")[1],
+                  delivery_address: orderFormData.address,
+                  delivery_time: dayjs(
+                    `${orderFormData.date} ${orderFormData.time}`
+                  ).toDate(),
+                  location: [orderFormData.latitude, orderFormData.longitude],
+                  payment_type: orderFormData.paymentMethod,
+                },
+                type: "CreateOrderTgInput",
+                required: true,
+              },
+            },
+            fields: ["id"],
+          });
+          client.request(query, variables).then((data) => {
+            console.log(data);
+            const id = data.createOrderTg.id;
+            const { query, variables } = gql.mutation({
+              operation: "assignOrderItem",
+              variables: {
+                id: {
+                  value: +id,
+                  type: "Int",
+                  required: true,
+                },
+                order_items: {
+                  type: "[order_itemsInput!]",
+                  value: orderFormData.productIds.map((v) => ({
+                    product_id: +v,
+                    quantity: 1,
+                  })),
+                  required: true,
+                },
+              },
+              fields: ["id"],
+            });
+
+            const response = client.request(query, variables);
+            /** @ts-ignore */
+            window.Telegram.WebApp.MainButton.hideProgress();
+            /** @ts-ignore */
+            window.Telegram.WebApp.close();
+          });
+        }
       });
     } else {
       /** @ts-ignore */
       window.Telegram.WebApp.MainButton.disable();
     }
-  }, [filled]);
+  }, [filledAllData]);
 
   return (
     <div className="">
