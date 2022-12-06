@@ -29,6 +29,7 @@
     "astro": "^1.6.11",
     "astro-i18next": "^1.0.0-beta.13",
     "daisyui": "^2.42.1",
+    "dayjs": "^1.11.6",
     "express": "^4.18.2",
     "fastify": "^4.10.2",
     "gql-query-builder": "^3.8.0",

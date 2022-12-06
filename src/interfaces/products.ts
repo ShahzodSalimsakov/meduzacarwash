@@ -11,3 +11,7 @@ export class IProductCategory {
   is_additional: boolean;
   products_product_categories: IProduct[] | null;
 }
+
+export class IOrderDateTime {
+  value: string;
+}
