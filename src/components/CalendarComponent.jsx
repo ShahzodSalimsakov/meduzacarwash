@@ -35,8 +35,9 @@ export default function CalendarComponent() {
   };
 
   const onSelectedDate = (date) => {
-    setOrderFormData("date", value.toDateString());
+    setOrderFormData("date", date.toDateString());
     loadTimesToDate(date);
+    onChange(date);
   };
 
   useEffect(() => {
