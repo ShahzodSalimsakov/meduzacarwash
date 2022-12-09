@@ -1,0 +1,60 @@
+---
+import { changeLanguage } from "i18next";
+import Layout from "../layouts/Layout.astro";
+
+const orderId = Astro.url.searchParams.get("order_id")! || "";
+const signString = Astro.url.searchParams.get("sign")! || "";
+
+const response = await fetch("https://api.meduza-carwash.uz/graphql", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    query: `
+      query {
+          getCommentsByOrder(order_id: ${+orderId}, sign: "${signString}") {
+              id
+              comment
+          }
+      }
+    `,
+  }),
+});
+
+const json = await response.json();
+const data = json.data;
+
+let errorText = "";
+
+let comments = [];
+
+if (!json.errors) {
+  comments = data["getCommentsByOrder"];
+} else {
+  errorText = json.errors[0].message;
+}
+
+changeLanguage("ru");
+---
+
+<Layout title="comments">
+  <div class="my-10">
+    {
+      errorText ? (
+        <div
+          class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800 text-center"
+          role="alert"
+        >
+          {errorText}
+        </div>
+      ) : (
+        <div class="comments">
+          {comments.map((comment) => (
+            <div class="comment">
+              <div class="comment__id">{comment.comment}</div>
+            </div>
+          ))}
+        </div>
+      )
+    }
+  </div>
+</Layout>
