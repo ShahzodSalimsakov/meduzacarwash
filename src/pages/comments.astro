@@ -40,7 +40,7 @@ changeLanguage("ru");
 ---
 
 <Layout title="comments">
-  <div class="my-10">
+  <div class="my-10 h-[65vh]">
     {
       errorText ? (
         <div
@@ -51,8 +51,8 @@ changeLanguage("ru");
         </div>
       ) : (
         <div class="comments">
-          <div class="container mx-auto">
-            <div>
+          <div class="container">
+            <div class=" mx-auto  overflow-y-auto">
               <div class="w-full">
                 <div class="relative w-full p-6 overflow-y-auto h-[40rem]">
                   <ul class="space-y-2">

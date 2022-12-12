@@ -43,7 +43,7 @@ const AddCommentsForm: FC<AddCommentsFormProps> = ({ sign, orderId }) => {
   };
 
   return (
-    <div className="flex items-center justify-between w-full p-3 border-t border-gray-300">
+    <div className="flex items-center justify-between w-full py-3 border-t border-gray-300 fixed bottom-0 bg-white px-4">
       <input
         type="text"
         placeholder="Сообщение"
