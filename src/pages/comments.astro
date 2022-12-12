@@ -1,8 +1,8 @@
 ---
 import dayjs from "dayjs";
 import { changeLanguage } from "i18next";
-import AddCommentsForm from "../components/AddCommentForm";
-import Layout from "../layouts/Layout.astro";
+import AddCommentsForm from "../../components/AddCommentForm";
+import Layout from "../../layouts/Layout.astro";
 
 const orderId = Astro.url.searchParams.get("order_id")! || "";
 const signString = Astro.url.searchParams.get("sign")! || "";
@@ -40,7 +40,7 @@ changeLanguage("ru");
 ---
 
 <Layout title="comments">
-  <div class="my-10 h-[65vh]">
+  <div class="my-10">
     {
       errorText ? (
         <div
@@ -51,18 +51,18 @@ changeLanguage("ru");
         </div>
       ) : (
         <div class="comments">
-          <div class="container">
-            <div class=" mx-auto  overflow-y-auto">
+          <div class="container mx-auto">
+            <div>
               <div class="w-full">
                 <div class="relative w-full p-6 overflow-y-auto h-[40rem]">
                   <ul class="space-y-2">
                     {comments.map((comment) => (
                       <li class="flex justify-end">
                         <div class="text-right">
-                          <div class="relative max-w-xl px-4 py-2 text-gray-700 bg-gray-100 rounded shadow mb-2">
+                          <div class="relative max-w-xl px-4 py-2 text-text bg-primary rounded shadow mb-2">
                             <span class="block">{comment.comment}</span>
                           </div>
-                          <div>
+                          <div class="text-text">
                             {dayjs(comment.created_at).format(
                               "DD.MM.YYYY HH:mm"
                             )}
