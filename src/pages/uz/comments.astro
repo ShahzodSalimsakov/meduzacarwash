@@ -1,8 +1,8 @@
 ---
 import dayjs from "dayjs";
 import { changeLanguage } from "i18next";
-import AddCommentsForm from "../components/AddCommentForm";
-import Layout from "../layouts/Layout.astro";
+import AddCommentsForm from "../../components/AddCommentForm";
+import Layout from "../../layouts/Layout.astro";
 
 const orderId = Astro.url.searchParams.get("order_id")! || "";
 const signString = Astro.url.searchParams.get("sign")! || "";
