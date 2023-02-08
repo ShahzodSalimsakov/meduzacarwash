@@ -10,6 +10,7 @@ export class IProductCategory {
   name: string;
   is_additional: boolean;
   products_product_categories: IProduct[] | null;
+  additionalOptions: any;
 }
 
 export class IOrderDateTime {

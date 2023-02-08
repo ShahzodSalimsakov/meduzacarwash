@@ -7,6 +7,7 @@ import CalendarComponent from "../components/CalendarComponent";
 import Title from "../components/Title.astro";
 import MapComponent from "../components/MapComponent";
 import WashTypeComponent from "../components/WashTypeComponent";
+import ClientCommentComponent from "../components/ClientCommentComponent";
 
 const response = await fetch("https://api.meduza-carwash.uz/graphql", {
   method: "POST",
@@ -44,6 +45,7 @@ changeLanguage("ru");
   <MapComponent client:load />
   <Title>{t("main.specifyTypeOfSink")}</Title>
   <WashTypeComponent categories={productCategories} client:load />
+  <ClientCommentComponent client:load />
   <div
     style={{
       display: "none",
