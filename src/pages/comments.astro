@@ -1,0 +1,83 @@
+---
+import dayjs from "dayjs";
+import { changeLanguage } from "i18next";
+import AddCommentsForm from "../components/AddCommentForm";
+import Layout from "../layouts/Layout.astro";
+
+const orderId = Astro.url.searchParams.get("order_id")! || "";
+const signString = Astro.url.searchParams.get("sign")! || "";
+
+const response = await fetch("https://api.meduza-carwash.uz/graphql", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    query: `
+      query {
+          getCommentsByOrder(order_id: ${+orderId}, sign: "${signString}") {
+              id
+              comment
+              created_at
+          }
+      }
+    `,
+  }),
+});
+
+const json = await response.json();
+const data = json.data;
+
+let errorText = "";
+
+let comments = [];
+
+if (!json.errors) {
+  comments = data["getCommentsByOrder"];
+} else {
+  errorText = json.errors[0].message;
+}
+
+changeLanguage("ru");
+---
+
+<Layout title="comments">
+  <div class="my-10">
+    {
+      errorText ? (
+        <div
+          class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800 text-center"
+          role="alert"
+        >
+          {errorText}
+        </div>
+      ) : (
+        <div class="comments">
+          <div class="container mx-auto">
+            <div>
+              <div class="w-full">
+                <div class="relative w-full p-6 overflow-y-auto h-[40rem]">
+                  <ul class="space-y-2">
+                    {comments.map((comment) => (
+                      <li class="flex justify-end">
+                        <div class="text-right">
+                          <div class="relative max-w-xl px-4 py-2 text-text bg-primary rounded shadow mb-2">
+                            <span class="block">{comment.comment}</span>
+                          </div>
+                          <div class="text-text">
+                            {dayjs(comment.created_at).format(
+                              "DD.MM.YYYY HH:mm"
+                            )}
+                          </div>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <AddCommentsForm sign={signString} orderId={orderId} client:load />
+          </div>
+        </div>
+      )
+    }
+  </div>
+</Layout>

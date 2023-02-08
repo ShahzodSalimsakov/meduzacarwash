@@ -1,13 +1,14 @@
-/** @type {import('astro-i18next').AstroI18nextConfig} */
-export default {
-  defaultLanguage: "ru",
-  supportedLanguages: ["ru", "uz"],
-  i18next: {
-    debug: true, // convenient during development to check for missing keys
-    initImmediate: false,
-    backend: {
-      loadPath: "./src/locales/{{lng}}.json",
-    },
+import type { AstroI18nextConfig } from "astro-i18next";
+
+const config: AstroI18nextConfig = {
+  defaultLocale: "ru",
+  locales: ["ru", "uz"],
+  i18nextServer: {
+    debug: true,
   },
-  i18nextPlugins: { fsBackend: "i18next-fs-backend" },
+  i18nextClient: {
+    debug: true,
+  },
 };
+
+export default config;

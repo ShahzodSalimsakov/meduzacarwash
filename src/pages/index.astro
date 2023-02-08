@@ -8,6 +8,32 @@ import Title from "../components/Title.astro";
 import MapComponent from "../components/MapComponent";
 import WashTypeComponent from "../components/WashTypeComponent";
 
+const response = await fetch("https://api.meduza-carwash.uz/graphql", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    query: `
+      query {
+          publicCategories {
+              id
+              name
+              products_product_categories {
+                  id
+                  name
+                  price
+                  icon
+              }
+          }
+      }
+    `,
+  }),
+});
+
+const json = await response.json();
+const data = json.data;
+
+const productCategories = data["publicCategories"];
+
 changeLanguage("ru");
 ---
 
@@ -15,8 +41,27 @@ changeLanguage("ru");
   <Title>{t("main.specifyDateAndTime")}</Title>
   <CalendarComponent client:load />
   <Title>{t("main.specifyALocation")}</Title>
-  <Button>{t("main.determineLocation")}</Button>
   <MapComponent client:load />
   <Title>{t("main.specifyTypeOfSink")}</Title>
-  <WashTypeComponent client:load />
+  <WashTypeComponent categories={productCategories} client:load />
+  <div
+    style={{
+      display: "none",
+    }}
+  >
+    <span id="submitText">{t("main.orderSubmitLabel")}</span>
+  </div>
 </Layout>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    /** @ts-ignore */
+    window.Telegram.WebApp.MainButton.show();
+    /** @ts-ignore */
+    window.Telegram.WebApp.MainButton.setText(
+      document.getElementById("submitText").textContent.toUpperCase()
+    );
+    /** @ts-ignore */
+    window.Telegram.WebApp.MainButton.disable();
+  });
+</script>
