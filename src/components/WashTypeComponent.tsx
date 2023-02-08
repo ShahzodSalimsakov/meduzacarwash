@@ -65,6 +65,9 @@ export default function WashTypeComponent() {
     },
   ]);
   const [accessElectricity, setAccessElectricity] = useState(true);
+  const accessElectricityHandler = () => {
+    setAccessElectricity(!accessElectricity);
+  };
   return (
     <div className="">
       {categories && (
@@ -154,10 +157,18 @@ export default function WashTypeComponent() {
               ? "w-full rounded-lg py-2.5  font-medium leading-5 bg-white shadow"
               : "w-full rounded-lg py-2.5  font-medium leading-5 shadow bg-gray-200"
           }
+          onClick={accessElectricityHandler}
         >
           {t("main.yes")}
         </div>
-        <div className="w-full rounded-lg py-2.5  font-medium leading-5 bg-gray-200">
+        <div
+          className={
+            accessElectricity
+              ? "w-full rounded-lg py-2.5  font-medium leading-5 bg-gray-200 shadow"
+              : "w-full rounded-lg py-2.5  font-medium leading-5 shadow bg-white"
+          }
+          onClick={accessElectricityHandler}
+        >
           {t("main.no")}
         </div>
       </div>
@@ -165,9 +176,7 @@ export default function WashTypeComponent() {
       <div className="flex space-x-1 rounded-xl bg-gray-200 p-1 mt-2 text-center">
         <div
           className={
-            accessElectricity
-              ? "w-full rounded-lg py-2.5  font-medium leading-5 bg-white shadow"
-              : "w-full rounded-lg py-2.5  font-medium leading-5 shadow bg-gray-200"
+            "w-full rounded-lg py-2.5  font-medium leading-5 bg-white shadow"
           }
         >
           {t("main.inCash")}
